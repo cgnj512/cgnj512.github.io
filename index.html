@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-12 15:40:04 / 修改时间：15:46:49" itemprop="dateCreated datePublished" datetime="2020-02-12T15:40:04+08:00">2020-02-12</time>
+              <time title="创建时间：2020-02-12 15:40:04 / 修改时间：15:50:38" itemprop="dateCreated datePublished" datetime="2020-02-12T15:40:04+08:00">2020-02-12</time>
             </span>
 
           
@@ -205,88 +205,14 @@
 
       
           <h1 id="配置Github-Hexo博客并启用NeXT主题"><a href="#配置Github-Hexo博客并启用NeXT主题" class="headerlink" title="配置Github+Hexo博客并启用NeXT主题"></a>配置Github+Hexo博客并启用NeXT主题</h1><h2 id="0-What-is-Hexo"><a href="#0-What-is-Hexo" class="headerlink" title="0. What is Hexo?"></a>0. What is Hexo?</h2><p>A fast, simple &amp; powerful blog framework<br>Incredible generating speed powered by Node.js. Hundreds of files take only seconds to build.<br>All features of GitHub Flavored Markdown are supported, including most Octopress plugins.<br>You only need one command to deploy your site to GitHub Pages, Heroku or other platforms.<br>Features powerful APIs for limitless extensibility. Various plugins are available to support most template engines.</p>
-<h2 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1. 安装Node.js"></a>1. 安装<code>Node.js</code></h2><p>访问<del><a href="https://node.js/" target="_blank" rel="noopener">https://node.js/</a></del> <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a> 下载Node安装包</p>
-<h3 id="1-1-Linux方法"><a href="#1-1-Linux方法" class="headerlink" title="1.1 Linux方法"></a>1.1 Linux方法</h3><p>由于我的操作系统是<a href="https://www.deepin.org/" target="_blank" rel="noopener">Linux</a>，我下载了这个</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v12.15.0/node-v12.15.0-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
-<p>然后解压</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xvf node-v12.15.0-linux-x64.tar.xz</span><br><span class="line">mv node-v12.15.0-linux-x64 nodejs</span><br><span class="line"><span class="built_in">cd</span> nodejs</span><br><span class="line"><span class="built_in">pwd</span>              <span class="comment"># 记住输出的内容，它是你安装Node.js的路径</span></span><br></pre></td></tr></table></figure>
-<p>例如说，我安装在了<code>/home/cgnj512/install/nodejs/nodejs/</code><br>cd一下，再ls一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/cgnj512/install/nodejs/nodejs/     <span class="comment"># 改成你安装Node.js的路径</span></span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
-<p>你可以看到<code>bin</code> <code>include</code> <code>lib</code> 等目录和文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/node -v      <span class="comment"># 查看Node.js版本</span></span><br></pre></td></tr></table></figure>
-<p>接下来，弄几个软链接，使得可以直接使用<code>node</code>和<code>npm</code>命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s &#123;your_path&#125;/bin/node /usr/<span class="built_in">local</span>/bin</span><br><span class="line">sudo ln -s &#123;your_path&#125;/bin/npm /usr/<span class="built_in">local</span>/bin  <span class="comment"># &#123;your_path&#125;换成安装路径</span></span><br></pre></td></tr></table></figure>
-<p>直接输入<code>npm -v</code>测试吧！<br>（如果提示command not found，请自行百度：将/usr/local/bin加入环境变量）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 本节已结束</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-Windows方法"><a href="#1-2-Windows方法" class="headerlink" title="1.2 Windows方法"></a>1.2 Windows方法</h3><p><del>什么？还有Windows这系统吗？我怎么没听说过？</del><br>由于BugDows的Bug真是不少，不建议专业（非专业）人士使用，不过如果你是巨硬的铁粉，我还是愿意给你贴上一条链接</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">https://nodejs.org/dist/v12.15.0/node-v12.15.0-x64.msi</span></span><br></pre></td></tr></table></figure>
-<p>最简单的msi安装<br>测试：打开命令提示符<code>npm -v</code></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 本节已结束</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-Mac方法"><a href="#1-3-Mac方法" class="headerlink" title="1.3 Mac方法"></a>1.3 Mac方法</h3><p>链接：</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">https://nodejs.org/dist/v12.15.0/node-v12.15.0.pkg</span></span><br></pre></td></tr></table></figure>
-<p>最简单的pkg安装</p>
-<hr>
-<h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2. 安装Git"></a>2. 安装<code>Git</code></h2><p>由于Git的安装实在比较简单，就不多阐述了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git // Linux</span><br><span class="line">// Windows &amp; MacOS 自行下载安装包傻瓜式安装</span><br></pre></td></tr></table></figure>
-<p>当然了，安装完还是要测试的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="3-npm换国内源"><a href="#3-npm换国内源" class="headerlink" title="3. npm换国内源"></a>3. <code>npm</code>换国内源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4-安装Hexo"><a href="#4-安装Hexo" class="headerlink" title="4. 安装Hexo"></a>4. 安装<code>Hexo</code></h2><p>比安装Git稍微复杂一点<br>官网在这里 ==&gt; <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a><br>Hexo是博客从.md文件转为.html的关键，你只负责写文本，选一个主题，Hexo会自动帮你配置</p>
-<p>Linux &amp; BugDows &amp; MacOS 同方法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>Linux下配置PATH（BugDows自行百度）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /home/cgnj512/install/nodejs/nodejs/lib/node_modules/hexo-cli/bin/hexo /usr/<span class="built_in">local</span>/bin            <span class="comment"># 请修改Node.js安装位置</span></span><br></pre></td></tr></table></figure>
-<p>测试Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="5-在Github创建你的博客仓库"><a href="#5-在Github创建你的博客仓库" class="headerlink" title="5. 在Github创建你的博客仓库"></a>5. 在<code>Github</code>创建你的博客仓库</h2><p>先跑到<a href="https://github.com/" target="_blank" rel="noopener">Github</a>注册一个账号，<br>然后点击New Repository（<a href="https://github.com/new" target="_blank" rel="noopener">https://github.com/new</a>）新建一个仓库<br>假设你的Github用户名是aUser_name<br>则Repository name填 <code>aUser_name.github.io</code><br>Description指对博客的描述，随便写，或者不写<br>下面选Public，博客当然要公开<br>再下面啥都不要点，方框不要打钩，选择框全部None，点击Create，完成。</p>
-<h3 id="给你的Git配置账号密码"><a href="#给你的Git配置账号密码" class="headerlink" title="给你的Git配置账号密码"></a>给你的Git配置账号密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">"your_email@example.com"</span></span><br><span class="line">git config --global user.name <span class="string">"your_name"</span> <span class="comment"># 保留双引号</span></span><br></pre></td></tr></table></figure>
-<p>email那里写你注册Github的邮箱，name写你的用户名</p>
-<h3 id="配置Github-SSH"><a href="#配置Github-SSH" class="headerlink" title="配置Github SSH"></a>配置Github SSH</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span></span><br><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure>
-
-<p>查看文件夹下的id_rsa.pub，有一堆字符。复制输出的内容（全部），可能长这样：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-rsa hfeuiwhfjwjwdkjkwojoiiiiiieieieiejwodjwhafjkehfjkbsjbfhkfbvkkheifhwikfhHHHHHHUSHDIHSIHIEHIJHSJKBEBDIShfuehwifhjHUHDUSIHIefhiwhfihfuiwhefjdkfjkwbefihwknjkdwjknfjkwnjeibwkfiewhufifhwe your_email@example.com</span><br></pre></td></tr></table></figure>
-<p>到Github的Settings，点击SSHandGPG，新建SSH，title随便，下面粘贴复制的东西。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 本节已结束</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-本地运行博客"><a href="#6-本地运行博客" class="headerlink" title="6. 本地运行博客"></a>6. 本地运行博客</h2><p>还记得你的用户名吗？现在仍然假设它是aUser_name</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init aUser_name.github.io <span class="comment"># 初始化</span></span><br><span class="line"><span class="built_in">cd</span> aUser_name.github.io</span><br><span class="line">npm install <span class="comment"># 安装依赖</span></span><br><span class="line">hexo s -p 3345 <span class="comment"># 访问</span></span><br></pre></td></tr></table></figure>
-<p>在浏览器输入<code>127.0.0.1:3345</code>访问博客<br>按Ctrl+C停止博客服务</p>
-<h3 id="文章的删除和新建"><a href="#文章的删除和新建" class="headerlink" title="文章的删除和新建"></a>文章的删除和新建</h3><p>在<code>source/_posts</code>目录里，有一些md文件，删掉就可以删除一篇文章<br>新建文章：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new title <span class="string">"you_give_it_a_name"</span></span><br></pre></td></tr></table></figure>
-<p>刷新博客：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-发布博客到Github"><a href="#7-发布博客到Github" class="headerlink" title="7. 发布博客到Github"></a>7. 发布博客到Github</h2><p>初始化Git</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>修改配置文件:</p>
-<p>编辑<code>_config.yml</code></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: MyBlog</span><br><span class="line">author: zuozhe</span><br><span class="line">language: zh-CN</span><br><span class="line">url: aUser_name.github.io</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:cgnj512/cgnj512.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>（cgnj512改你的用户名）<br>保存后再安装一遍Deployer</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="comment"># 接着</span></span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>一路yes，就提交上去了<br>看一看吧！<code>https://cgnj512.github.io</code></p>
-<h2 id="8-换主题"><a href="#8-换主题" class="headerlink" title="8. 换主题"></a>8. 换主题</h2><p>默认主题是不是很丑？现在教你换成巧妙的<code>NeXT</code></p>
-<p>来到主目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/JancerWu/hexo-theme-next-1.git themes/next</span><br><span class="line"><span class="comment"># 这是国内的一个镜像，方便国内用户</span></span><br></pre></td></tr></table></figure>
-<p>编辑<code>_config.yml</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找到theme</span></span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-<p>测试新主题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s -p 3345</span><br></pre></td></tr></table></figure>
-<p>换主题样式：编辑<code>themes/next/_config.yml</code><br>在scheme那里加注释、去注释，例如<code>scheme: Mist</code></p>
-<p>然后</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d <span class="comment"># 提交到Github</span></span><br></pre></td></tr></table></figure>
-
-<p>完成啦！Start blogging with Hexo!</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/12/%E9%85%8D%E7%BD%AEGithub-Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%90%AF%E7%94%A8NeXT%E4%B8%BB%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
