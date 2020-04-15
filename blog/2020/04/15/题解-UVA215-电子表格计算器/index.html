@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://cgnj512.github.io/blog').hostname,
+    root: '/blog/',
+    scheme: 'Mist',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="UVA215的题解题目来源：lrj老人家紫书第6章的习题13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 UVA215 电子表格计算器">
+<meta property="og:url" content="https://cgnj512.github.io/blog/2020/04/15/%E9%A2%98%E8%A7%A3-UVA215-%E7%94%B5%E5%AD%90%E8%A1%A8%E6%A0%BC%E8%AE%A1%E7%AE%97%E5%99%A8/index.html">
+<meta property="og:site_name" content="cgnj512&#39;s Blog">
+<meta property="og:description" content="UVA215的题解题目来源：lrj老人家紫书第6章的习题13">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-15T08:30:23.000Z">
+<meta property="article:modified_time" content="2020-04-15T08:30:55.496Z">
+<meta property="article:author" content="cgnj512">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cgnj512.github.io/blog/2020/04/15/%E9%A2%98%E8%A7%A3-UVA215-%E7%94%B5%E5%AD%90%E8%A1%A8%E6%A0%BC%E8%AE%A1%E7%AE%97%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>题解 UVA215 电子表格计算器 | cgnj512's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cgnj512's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cgnj512.github.io/blog/2020/04/15/%E9%A2%98%E8%A7%A3-UVA215-%E7%94%B5%E5%AD%90%E8%A1%A8%E6%A0%BC%E8%AE%A1%E7%AE%97%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="cgnj512">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cgnj512's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          题解 UVA215 电子表格计算器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-15 16:30:23 / 修改时间：16:30:55" itemprop="dateCreated datePublished" datetime="2020-04-15T16:30:23+08:00">2020-04-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="UVA215的题解"><a href="#UVA215的题解" class="headerlink" title="UVA215的题解"></a>UVA215的题解</h1><p>题目来源：lrj<del>老人家</del>紫书第6章的习题13</p>
+<a id="more"></a>
+
+<p>这题要计算单元格的数值，其中单元格之间会互相引用，那么应该想到先填上纯数字的单元格，再计算表达式。</p>
+<p>既然有引用，就要防止循环引用无限递归，lrj在书前面的例题中提到了个挺有用的方法，用一个数组，“正在访问”值设为<code>-1</code>,<br>“访问过了”设为<code>1</code>, “没访问过”设为<code>0</code>。因为这题明显和有没有访问过无关，所以只有两种状态，定义一个<code>bool</code>数组即可。</p>
+<h2 id="1-输入处理"><a href="#1-输入处理" class="headerlink" title="1. 输入处理"></a>1. 输入处理</h2><ul>
+<li>这里每个单元格用一结构体存储，结构体 <code>td</code> 包含一个<code>int</code>整数（纯数字），<br>一个字符串（表达式）和一个“是否为纯数字”的标记。<del>（td取自HTML标记名）</del><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">td</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">bool</span> num;</span><br><span class="line">    <span class="keyword">int</span> con_int;</span><br><span class="line">    <span class="keyword">char</span> con_str[<span class="number">80</span>]&#123;&#125;;</span><br><span class="line">    explicit td (bool n=true) :num(n), con_int(0) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">td table[<span class="number">20</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> r, c;</span><br></pre></td></tr></table></figure>
+输入：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//memset(us1ng, 0, sizeof(us1ng));</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;r, &amp;c);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">            table[i][j] = td();</span><br><span class="line">        <span class="keyword">if</span> (!r) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">            <span class="keyword">int</span> x = to_number(str);</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">-1</span>) &#123;table[i][j].num = <span class="literal">false</span>; <span class="built_in">memcpy</span>(table[i][j].con_str, str, <span class="number">80</span>);&#125;</span><br><span class="line">            <span class="keyword">else</span> table[i][j].con_int = x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// ......</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><code>to_number</code>是将字符串转为数字的一个（手写）函数，字符串不是数字时会返回<code>-1</code>。</li>
+</ul>
+<h2 id="2-单元格的计算"><a href="#2-单元格的计算" class="headerlink" title="2. 单元格的计算"></a>2. 单元格的计算</h2><ul>
+<li><p>扫描每一个单元格，如果是纯数字就呗用管，表达式则要尝试去求。</p>
+</li>
+<li><p>每个表达式都会引用别的单元格，为了避免<code>循环引用</code>，对正在访问的单元格要加上个标记。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> us1ng[<span class="number">20</span>][<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(us1ng, <span class="number">0</span>, <span class="keyword">sizeof</span>(us1ng));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!table[i][j].num)</span><br><span class="line">        &#123;</span><br><span class="line">            solve(i, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>solve函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (us1ng[x][y]) <span class="keyword">return</span> <span class="number">-114514</span>;</span><br><span class="line">    <span class="keyword">if</span> (table[x][y].num) <span class="keyword">return</span> table[x][y].con_int;</span><br><span class="line">    us1ng[x][y] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">char</span> Str[<span class="number">80</span>];</span><br><span class="line">    <span class="built_in">memcpy</span>(Str, table[x][y].con_str, <span class="number">80</span>);</span><br><span class="line">    <span class="keyword">bool</span> p1us = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>, ans = <span class="number">0</span>, cur_ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 处理字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">    us1ng[x][y] = <span class="literal">false</span>;</span><br><span class="line">    table[x][y].num = <span class="literal">true</span>, table[x][y].con_int = ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>因为函数返回int，在计算表达式失败时要返回一个特殊的数字，这里用了<code>-114514</code>，因为这个数超出了计算结果的上限。</p>
+</li>
+<li><p>引用别的单元格时，如果递归返回失败,也要返回<code>-114514</code>。</p>
+</li>
+<li><p>若算出结果，要把单元格“是否为数字”的<code>tag</code>标上。</p>
+</li>
+<li><p>处理字符串就是扫描一遍，扫描出单元格编号并递归，或者是数字，具体看AC代码</p>
+</li>
+</ul>
+<h2 id="3-输出"><a href="#3-输出" class="headerlink" title="3. 输出"></a>3. 输出</h2><p>UVA的输出格式还是比较坑爹的。</p>
+<p>考虑两种情况：全部算出来和没有算出来</p>
+<p>没有：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">                <span class="keyword">if</span> (!table[i][j].num)</span><br><span class="line">                &#123;</span><br><span class="line">                    right_output = <span class="literal">false</span>;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%c%c: "</span>, i + <span class="string">'A'</span>, j + <span class="string">'0'</span>);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, table[i][j].con_str);</span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">// 即为输出算不出来的单元格表达式。</span></span><br></pre></td></tr></table></figure>
+
+<p>全部算出来：</p>
+<p>由于懒得看英文文档，就手数空格发现是6位一对齐，直接printf(“%6d”)</p>
+<p>结果被坑了。。。。。。</p>
+<p>比如说当输出<code>-12345</code>时，实际输出为 <code>B-12345</code>。但是评测机想要多一个空格呢<code>B -12345</code></p>
+<p>就分情况吧</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c; ++i) <span class="built_in">printf</span>(<span class="string">"%6d"</span>, i);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c"</span>, i + <span class="string">'A'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (table[i][j].con_int &lt; <span class="number">0</span> &amp;&amp; table[i][j].con_int / <span class="number">10000</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" %d"</span>, table[i][j].con_int);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%6d"</span>, table[i][j].con_int);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，不要忘记每一个数据点后都有一个空行。</p>
+<h2 id="AC-代码，自行体会"><a href="#AC-代码，自行体会" class="headerlink" title="AC 代码，自行体会"></a>AC 代码，自行体会</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> r, c; <span class="comment">// 行和列</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">td</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">bool</span> num; <span class="comment">// “是否为数字”</span></span><br><span class="line">    <span class="keyword">int</span> con_int;</span><br><span class="line">    <span class="keyword">char</span> con_str[<span class="number">80</span>]&#123;&#125;;</span><br><span class="line">    explicit td (bool n=true) :num(n), con_int(0) &#123;&#125;</span><br><span class="line">&#125;; <span class="comment">// 单元格结构体</span></span><br><span class="line">td table[<span class="number">20</span>][<span class="number">10</span>];   <span class="comment">// 整个表格</span></span><br><span class="line"><span class="keyword">bool</span> us1ng[<span class="number">20</span>][<span class="number">10</span>]; <span class="comment">// “正在使用”</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">to_number</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">80</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (str[i] == <span class="string">'\0'</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (str[i] &lt; <span class="string">'0'</span> || str[i] &gt; <span class="string">'9'</span>) &#123;ans = <span class="number">-1</span>; <span class="keyword">break</span>;&#125;</span><br><span class="line">        <span class="keyword">else</span> ans *= <span class="number">10</span>, ans += str[i] - <span class="string">'0'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans; <span class="comment">// 将字符串转为数字，失败返回-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (us1ng[x][y]) <span class="keyword">return</span> <span class="number">-114514</span>; <span class="comment">// Special number</span></span><br><span class="line">    <span class="keyword">if</span> (table[x][y].num) <span class="keyword">return</span> table[x][y].con_int;</span><br><span class="line">    us1ng[x][y] = <span class="literal">true</span>; <span class="comment">// 正在使用，防止循环</span></span><br><span class="line">    <span class="keyword">char</span> Str[<span class="number">80</span>];</span><br><span class="line">    <span class="built_in">memcpy</span>(Str, table[x][y].con_str, <span class="number">80</span>);</span><br><span class="line">    <span class="keyword">bool</span> p1us = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>, ans = <span class="number">0</span>, cur_ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Str[step] == <span class="string">'\0'</span>) <span class="keyword">break</span>; <span class="comment">// 扫描结束</span></span><br><span class="line">        <span class="keyword">if</span> (Str[step] &gt;= <span class="string">'A'</span>)         <span class="comment">// 单元格</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> X = Str[step] - <span class="string">'A'</span>, Y = Str[step+<span class="number">1</span>] - <span class="string">'0'</span>;</span><br><span class="line">            step += <span class="number">2</span>;</span><br><span class="line">            cur_ans = solve(X, Y);</span><br><span class="line">            <span class="keyword">if</span> (cur_ans == <span class="number">-114514</span>) <span class="keyword">return</span> <span class="number">-114514</span>; <span class="comment">// 若递归失败直接返回</span></span><br><span class="line">            p1us ? ans += cur_ans : ans -= cur_ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Str[step] == <span class="string">'-'</span>) p1us = <span class="literal">false</span>, step++; <span class="comment">// 变号</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Str[step] == <span class="string">'+'</span>) p1us = <span class="literal">true</span>, step++;  <span class="comment">// 变号</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Str[step] &lt;= <span class="string">'9'</span> &amp;&amp; Str[step] &gt;= <span class="string">'0'</span>)   <span class="comment">// 数字</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> num = Str[step] - <span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">while</span> (Str[step+<span class="number">1</span>] &lt;= <span class="string">'9'</span> &amp;&amp; Str[step+<span class="number">1</span>] &gt;= <span class="string">'0'</span>)</span><br><span class="line">                num *= <span class="number">10</span>, step++, num += Str[step] - <span class="string">'0'</span>;</span><br><span class="line">            step++;</span><br><span class="line">            p1us ? ans += num : ans -= num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    us1ng[x][y] = <span class="literal">false</span>; <span class="comment">// 取消标记</span></span><br><span class="line">    table[x][y].num = <span class="literal">true</span>, table[x][y].con_int = ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[<span class="number">80</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(us1ng, <span class="number">0</span>, <span class="keyword">sizeof</span>(us1ng));</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;r, &amp;c);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">            table[i][j] = td();</span><br><span class="line">        <span class="keyword">if</span> (!r) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">            <span class="keyword">int</span> x = to_number(str);</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">-1</span>) &#123;table[i][j].num = <span class="literal">false</span>; <span class="built_in">memcpy</span>(table[i][j].con_str, str, <span class="number">80</span>);&#125; <span class="comment">// 输入为字符串</span></span><br><span class="line">            <span class="keyword">else</span> table[i][j].con_int = x; <span class="comment">// 输入为数字</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!table[i][j].num)</span><br><span class="line">            &#123;</span><br><span class="line">                solve(i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">bool</span> right_output = <span class="literal">true</span>; <span class="comment">// 这个bool指是否全部计算出来</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">                <span class="keyword">if</span> (!table[i][j].num) <span class="comment">// 这个单元格没有被计算出来</span></span><br><span class="line">                &#123;</span><br><span class="line">                    right_output = <span class="literal">false</span>;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%c%c: "</span>, i + <span class="string">'A'</span>, j + <span class="string">'0'</span>);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, table[i][j].con_str);</span><br><span class="line">                &#125;</span><br><span class="line">        <span class="keyword">if</span> (right_output)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c; ++i) <span class="built_in">printf</span>(<span class="string">"%6d"</span>, i);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>, i + <span class="string">'A'</span>);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c; ++j)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (table[i][j].con_int &lt; <span class="number">0</span> &amp;&amp; table[i][j].con_int / <span class="number">10000</span>)</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">" %d"</span>, table[i][j].con_int);</span><br><span class="line">                    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%6d"</span>, table[i][j].con_int);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>); <span class="comment">// 每个点后面都有空行</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>P.S. 注意代码里面的<code>us1ng</code>和<code>p1us</code>，是用于避免关键字冲突</p>
+<p>最后推荐一个<code>UVA</code>专用的<code>Debug</code>网址：<a href="https://www.udebug.com/UVa/215" target="_blank" rel="noopener">uDebug</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/02/12/%E9%85%8D%E7%BD%AEGithub-Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%90%AF%E7%94%A8NeXT%E4%B8%BB%E9%A2%98/" rel="prev" title="配置Github+Hexo博客并启用NeXT主题">
+      <i class="fa fa-chevron-left"></i> 配置Github+Hexo博客并启用NeXT主题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA215的题解"><span class="nav-number">1.</span> <span class="nav-text">UVA215的题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-输入处理"><span class="nav-number">1.1.</span> <span class="nav-text">1. 输入处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-单元格的计算"><span class="nav-number">1.2.</span> <span class="nav-text">2. 单元格的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-输出"><span class="nav-number">1.3.</span> <span class="nav-text">3. 输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-代码，自行体会"><span class="nav-number">1.4.</span> <span class="nav-text">AC 代码，自行体会</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cgnj512</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgnj512</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
